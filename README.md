@@ -1,4 +1,5 @@
 Title
+
 Article Insights AI — Predict Shares, Estimate Virality, and Get Actionable Editorial Insights
 
 Overview
@@ -45,31 +46,38 @@ Python 3.9+ (recommend 3.10–3.11)
 A virtual environment tool (venv, uv, or conda)
 
 Setup:
+
 Create and activate a virtual environment.
 Install dependencies: pip install -r requirements.txt
 Place trained artifacts (e.g., news_model_bundle.pkl and feature_columns.pkl) into the model/ directory.
 
 Run:
+
 Start the app with Uvicorn (dev): uvicorn src.app:app --reload
 Visit the form page to submit an article’s metrics, select desired outputs, and review predictions.
 
 Typical workflow
+
 Open “Unified Form” → enter metrics (or paste title/content if enabled) → select outputs (shares, virality, style, visuals, suggestions) → submit → review predictions, visuals, and improvement tips → iterate and resubmit quickly.
 
 Dataset
+
 Description: The dataset represents article attributes (e.g., tokenized length, media counts, keyword counts, category/channel indicators, weekday) and outcome signals (shares). It underpins training of the share regressor, the virality classifier, and clustering.
 
 Schema highlights:
+
 Core numeric features: n_tokens_content, num_imgs, num_videos, num_keywords, self_reference_min_shares.
 Categorical/dummies: content_category (mapped to channel dummies), weekday dummies.
 Engineered features (during training): media ratios, keyword density, sentiment/subjectivity interactions, and any timing indicators used in modeling.
 
 Storage strategy:
+
 Do not commit large datasets to the repository to avoid bloating history and hitting file size limits.
 Preferred: provide a scripts/fetch_data.py that downloads data to dataset/ and verifies checksums; keep dataset/.gitkeep to retain the folder.
 Alternative: use Git LFS for moderate‑sized CSVs if organizationally acceptable; document storage/bandwidth quotas and how to install LFS.
 
 Reproducibility:
+
 Document data version/date, source, and license/usage terms.
 Include SHA256 checksums for downloadable files in the fetch script or a checksums.txt to ensure integrity.
 Optionally include a tiny sample (e.g., 50–200 rows) for quick sanity checks and for CI without large transfers.
@@ -83,9 +91,10 @@ Placement: Store artifacts in the model/ directory (ignored by default for large
 Regeneration: If training code is included, document how to retrain (data prep → train → evaluate → export bundle) and how to update feature_columns.pkl for compatibility.
 
 Project structure
-src/
-app.py (or main.py): FastAPI application factory/entry point.
 
+src/
+
+app.py (or main.py): FastAPI application factory/entry point.
 website/
 init.py: Declares website as a Python package so imports resolve cleanly; can also set package‑level constants.
 routes.py: HTTP route handlers (form, predict, results, static pages).
@@ -107,8 +116,11 @@ docs/: Screenshots and architecture notes.
 requirements.txt, README.md, .gitignore, LICENSE, .env.example
 
 Why init.py is used in each package
+
 Purpose: init.py marks a directory as a Python package so absolute imports work (e.g., from src.website.utils import feature_eng). It runs once on package import and can initialize package‑level state, set all to define a public API, or perform light configuration.
+
 In this project:
+
 src/ (optional): If treating src as a package, include init.py to enable from src.website import routes.
 src/website/: init.py ensures website is importable as a package, allowing clean imports across routes and utilities.
 src/website/utils/: init.py enables utils to be imported as a subpackage and optionally re‑exports common functions for convenience (e.g., from .feature_eng import feature_engineering).
@@ -120,19 +132,23 @@ Environment variables: Provide a .env.example describing variables (e.g., MODEL_
 Secrets: Never commit real .env files or secrets; ensure .env is listed in .gitignore.
 
 Usage
+
 Web interface: Visit /form, enter article details (or paste title/content if enabled), select outputs, and submit to see predictions and visuals.
 API (optional): If exposing JSON endpoints, document routes, query parameters, and example responses for programmatic access.
 
 Testing
+
 Unit tests: Add basic tests for utility functions and feature engineering to ensure schema stability.
 Diagnostics: Provide a small script to check classifier classes, feature alignment, and preprocessor transformations on a synthetic sample.
 
 Deployment
+
 Local: uvicorn src.app:app --reload for development.
 Docker (optional): Supply Dockerfile and compose for reproducible deployments; document environment variables for container runtime.
 Cloud: Mention reverse proxy, TLS termination, and environment config if deploying to a PaaS or VM.
 
 Roadmap
+
 URL ingestion with NLP extraction: Fetch a page by URL, extract main content/title, and auto‑populate features; include language detection and boilerplate removal.
 Timed re‑reading (timedeltas): Re‑fetch URLs at configurable intervals to detect updates, refresh predictions, and record change logs.
 Richer NLP features: Title readability/salience, keyphrases/entities, and topic/semantic embeddings; retrain once incremental lift is demonstrated.
@@ -144,14 +160,15 @@ Monitoring and retraining: Calibration/error dashboards, drift detection, schedu
 Privacy and governance: Configurable retention, anonymization, and audit logs for fetched content and inputs.
 
 Contributing
+
 Issues and pull requests are welcome.
 Please keep code style consistent, write concise tests for new utilities, and document changes that affect feature schemas or artifacts.
 
 License
+
 Choose and include a license (MIT is common for open projects). Ensure any dataset licenses are respected and documented.
 
 Acknowledgments
 
 Libraries and tools (FastAPI, scikit‑learn ecosystem, plotting libs).
-
 Any dataset sources or inspirations used during development.
