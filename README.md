@@ -5,6 +5,7 @@ Overview
 Article Insights AI is a FastAPI web application that helps creators and editors forecast article performance before publishing. It predicts expected share counts, estimates virality likelihood, assigns an interpretable content style, and provides practical improvement tips. The app bundles automated feature engineering, a stacked regression model for reach, a calibrated classifier with business‑oriented thresholds, and clustering for style guidance—rendered in a clean, responsive UI with embeddable visual diagnostics.
 
 Key features
+
 Share count prediction: A stacked ensemble trained on log(1+shares) provides stable estimates and returns them on the original scale for planning.
 Virality estimation: A calibrated probability coupled with a practical share cutoff reduces false positives for low‑reach content.
 Style clustering: Interpretable segments (e.g., Balanced Media, Promo/Branded, In‑Depth) mapped from unsupervised clusters into human‑readable labels.
@@ -13,21 +14,25 @@ Visual insights: Best‑time heatmap, channel effectiveness, and media impact ch
 Consistent inference: A serialized bundle ships models, preprocessing, thresholds, scaler, and cluster artifacts to keep training and inference aligned.
 
 How it works
+
 Input: Use a unified form to enter article metrics (length, images, videos, keywords, self‑references, category, weekday). Optionally accept pasted title and article content to auto‑derive features via lightweight NLP for a “copy–paste → insights” flow.
 Processing: The server reconstructs a full feature vector, fills any missing fields conservatively, executes feature engineering, and applies the same preprocessing used at training time (training–inference parity).
 
 Predictions:
+
 Regression: Returns expected shares after inverse‑transforming the log target.
 Classification: Produces a calibrated virality probability and applies a share cutoff to label Viral/Not Viral.
 Clustering: Assigns an interpretable content style with a short, descriptive summary.
 Output: Results render as cards with optional visuals and suggestions; users select which sections to generate.
 
 Why it’s useful
+
 Reduces editorial guesswork by quantifying likely reach and surfacing high‑leverage improvements before publishing.
 Provides pragmatic virality flags that combine probability and expected reach, so promotion focuses on meaningful candidates.
 Offers interpretable style guidance and suggestions, helping teams position content quickly and iterate with intent.
 
 Architecture highlights
+
 Web: FastAPI backend, Jinja2 templates, responsive front‑end with consistent navigation and glassmorphic cards.
 Models: Stacked regressor for reach, calibrated classifier for virality, and KMeans clustering with scaler and feature list for reproducible assignments.
 Artifacts: Single bundle holding model objects, feature schema, thresholds, scaler, and cluster feature names.
