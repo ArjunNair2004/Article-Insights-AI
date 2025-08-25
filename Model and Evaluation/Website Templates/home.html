@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home | Article Insights AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: linear-gradient(135deg, #1e3c72, #2a5298); color: #fff; }
+    header {
+      background: rgba(0,0,0,0.3); text-align: center;
+      padding: 10px; font-size: 14px; letter-spacing: 0.02em;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px); position: sticky; top:0; z-index:100;
+    }
+    .logo { font-size: 22px; font-weight: 800; }
+    .nav-links a { margin-left: 24px; color: #fff; text-decoration: none; font-weight: 600; }
+    .nav-links a:hover { color: #4fa2ff; }
+    .hero {
+      max-width: 1200px; margin: 60px auto 30px auto; display: flex; flex-wrap: wrap;
+      align-items: center; padding: 0 20px;
+    }
+    .hero-text {
+      flex: 1 1 500px; padding-right: 40px;
+      display: flex; flex-direction: column; align-items: center; /* Changed for centering */
+      text-align: center;
+    }
+    .hero-text h1 { font-size: 44px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+    .hero-text h1 span { color: #4fa2ff; }
+    .hero-text p {
+      margin-bottom: 30px; font-size: 18px; line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      /* centering handled by container */
+    }
+    .btn {
+      display: inline-block; padding: 16px 30px;
+      background: #4fa2ff; color: #000; font-weight: 600;
+      border-radius: 8px; text-decoration: none;
+      transition: background .3s;
+      margin-top: 10px;
+    }
+    .btn:hover { background: #3a8ee0; }
+    .hero-image {
+      flex: 1 1 400px; text-align: center;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-image img {
+      width: 100%; max-width: 400px; border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      display: block;
+      object-fit: cover;
+      min-height: 250px;
+      background: #183058;
+    }
+    .info-section {
+      max-width: 900px; margin: 0 auto 36px auto;
+      background: rgba(255,255,255,0.17);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border-radius: 22px;
+      box-shadow: 0 8px 32px rgba(30,60,114,0.13), 0 1.5px 8px rgba(33,60,136,0.04);
+      padding: 38px 30px 34px 30px;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(30,60,114, 0.21);
+      margin-bottom: 38px;
+    }
+    .info-section h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 24px rgba(44,120,200,0.15);
+    }
+    .info-section h3 {
+      font-size: 1.19rem;
+      font-weight: 700;
+      margin: 23px 0 7px 0;
+      color: #90cdf4;
+      letter-spacing: 0.01em;
+    }
+    .info-section ul {
+      margin-left: 24px; margin-bottom: 12px;
+    }
+    .info-section li {
+      font-size: 1.07rem; margin-bottom: 7px; color: #eceff5;
+      text-shadow: 0 1.5px 9px #254c8060;
+    }
+    .info-section p {
+      color: #e7e8f5; font-size: 1.08rem; line-height: 1.7;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 12px rgba(30,60,114, 0.14);
+    }
+    footer {
+      width: 100%; margin-top: 40px;
+      background: rgba(30,60,114,0.35); backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(230,240,255,0.09);
+      color: #c5d0ea; font-size: 1.07rem;
+      padding: 30px 0 18px 0; text-align: center;
+    }
+    .footer-wrap {
+      max-width: 980px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .footer-logo {
+      font-size: 1.25rem; font-weight: 700; letter-spacing: 0.5px;
+      color: #fff; margin-bottom: 12px;
+    }
+    .footer-nav { margin-bottom: 8px; }
+    .footer-nav a {
+      margin: 0 12px; color: #c5d0ea; text-decoration: none; font-weight: 500; transition: color 0.18s;
+    }
+    .footer-nav a:hover { color: #76adff; }
+    .footer-note { font-size: 0.97rem; color: #aebcce; margin-top: 4px; letter-spacing: 0.02em; }
+    @media(max-width:768px){
+      nav { flex-direction: column; gap: 10px; padding: 13px 4vw; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text { padding-right: 0; align-items: center; }
+      .hero-text h1 { font-size: 32px; }
+      .info-section { padding: 18px 7px 16px 7px; }
+      .footer-wrap { max-width:98vw; }
+    }
+  </style>
+</head>
+<body>
+  <header>Boost your article's impact with smart AI-powered insights</header>
+
+  <nav>
+    <div class="logo">Article Insights AI</div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Craft articles that <span>truly perform.</span></h1>
+      <p>
+        Article Insights AI empowers writers, marketers, and bloggers with instant feedback and predictions on your content. Our platform analyzes structure, keywords, media, and timing to help you optimize for shares, virality, quality, and more.
+      </p>
+      <a href="/services" class="btn">Explore Services</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80"
+        alt="AI writer illustration" onerror="this.style.display='none'">
+    </div>
+  </section>
+
+  <!-- Model/Platform Information Section -->
+  <section class="info-section">
+    <h2>How Does Article Insights AI Work?</h2>
+    <p>
+      Our platform uses advanced machine learning models trained on thousands of real web articles to predict what makes content succeed. When you submit your article details, our AI analyzes:
+    </p>
+    <ul>
+      <li>
+        <strong>Content structure</strong> (length, keywords, self-references)
+      </li>
+      <li>
+        <strong>Rich media</strong> (images, videos, media quality)
+      </li>
+      <li>
+        <strong>Publishing strategy</strong> (category, channel, best days/times)
+      </li>
+    </ul>
+    <h3>What Do the Predictions Mean?</h3>
+    <p>
+      We forecast the <strong>expected share count</strong> for your article using a specially trained regression model. At the same time, a second model classifies articles as “Viral” or “Not Viral,” based on patterns from high-performing content.
+    </p>
+    <p>
+      <strong>Why does this work?</strong> Our AI looks at thousands of factors—just like top platforms and media companies do—to give you actionable, personalized feedback before you publish.
+    </p>
+    <h3>Features & Benefits</h3>
+    <ul>
+      <li><strong>Real-time feedback</strong> as you enter your content metrics</li>
+      <li><strong>Virality probability</strong>: see if your content could trend</li>
+      <li><strong>Actionable suggestions</strong> for improving weak points</li>
+      <li><strong>Content style tips</strong>: learn if your writing is promo, feature, balanced, etc.</li>
+      <li><strong>Media strategy insights</strong>: get the best timing, channel, and media layout for your story</li>
+    </ul>
+    <h3>Who is it for?</h3>
+    <p>
+      Whether you’re a blogger, startup, agency, or a major publisher, Article Insights AI gives you a competitive edge—no need for a data science team or guesswork. Try your first prediction above!
+    </p>
+  </section>
+
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-logo">Article Insights AI</div>
+      <div class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="mailto:support@example.com">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+      <div class="footer-note">
+        &copy; {{ year or 2024 }} Article Insights AI. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

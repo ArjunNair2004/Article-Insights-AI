@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Unified Form | Article Insights AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+    }
+    header {
+      background: rgba(0,0,0,0.3);
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top:0;
+      z-index:100;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .nav-links a {
+      margin-left: 24px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-links a:hover {
+      color: #4fa2ff;
+    }
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    form label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+    }
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4066a5;
+      color: #fff;
+    }
+    input::placeholder,
+    select::placeholder {
+      color: #fff;
+      opacity: 1;
+    }
+    select option {
+      color: #000;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 12px;
+      transform: scale(1.2);
+    }
+    .submit-btn {
+      margin-top: 30px;
+      width: 100%;
+      padding: 14px;
+      background-color: #4fa2ff;
+      color: #fff;    /* TEXT IS WHITE NOW */
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
+    }
+    .submit-btn:hover {
+      background-color: #3a8ee0;
+    }
+    @media(max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    /* Footer styles */
+    footer {
+      width: 100%;
+      margin-top: 40px;
+      background: rgba(30,60,114,0.35);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(230,240,255,0.09);
+      color: #c5d0ea;
+      font-size: 1.07rem;
+      padding: 30px 0 18px 0;
+      text-align: center;
+    }
+    .footer-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .footer-nav {
+      margin-bottom: 8px;
+    }
+    .footer-nav a {
+      margin: 0 12px;
+      color: #c5d0ea;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    .footer-nav a:hover {
+      color: #76adff;
+    }
+    .footer-note {
+      font-size: 0.97rem;
+      color: #aebcce;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+    @media(max-width:760px){
+      nav { flex-direction: column; gap: 10px; padding: 13px 4vw; }
+      .footer-wrap { max-width:98vw; }
+    }
+  </style>
+</head>
+<body>
+  <header>Get personalized insights for your article instantly</header>
+  <nav>
+    <div class="logo">Article Insights AI</div>
+    <div class="nav-links">
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <h2>Get Your Article Insights</h2>
+    <form method="POST" action="/predict">
+      <label for="n_tokens_content">How long is your article?</label>
+      <input type="text" name="n_tokens_content" id="n_tokens_content" placeholder="e.g., 300 words → ~450 tokens" required>
+
+      <label for="num_imgs">How many images are in your article?</label>
+      <input type="text" name="num_imgs" id="num_imgs" placeholder="e.g., 2" required>
+
+      <label for="num_videos">How many videos are in your article?</label>
+      <input type="text" name="num_videos" id="num_videos" placeholder="e.g., 1" required>
+
+      <label for="num_keywords">How many different important keywords are in your article?</label>
+      <input type="text" name="num_keywords" id="num_keywords" placeholder="e.g., 6" required>
+
+      <label for="self_reference_min_shares">How many times do you reference your site or brand?</label>
+      <input type="text" name="self_reference_min_shares" id="self_reference_min_shares" placeholder="e.g., 3" required>
+
+      <label for="weekday">When will this be published?</label>
+      <select name="weekday" id="weekday" required>
+        <option value="">Select a day</option>
+        <option value="monday">Monday</option>
+        <option value="tuesday">Tuesday</option>
+        <option value="wednesday">Wednesday</option>
+        <option value="thursday">Thursday</option>
+        <option value="friday">Friday</option>
+        <option value="saturday">Saturday</option>
+        <option value="sunday">Sunday</option>
+      </select>
+
+      <label for="virality_level">Expected virality level</label>
+      <select name="virality_level" id="virality_level" required>
+        <option value="">Select level</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <label for="content_category">Content category</label>
+      <select name="content_category" id="content_category" required>
+        <option value="">Select category</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="bus">Business</option>
+        <option value="tech">Tech</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="world">World</option>
+        <option value="socmed">Social Media</option>
+      </select>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="selected_services" value="share_count"> Share Count Prediction</label>
+        <label><input type="checkbox" name="selected_services" value="virality"> Virality Classification</label>
+        <label><input type="checkbox" name="selected_services" value="heatmap"> Best Time Heatmap</label>
+        <label><input type="checkbox" name="selected_services" value="cluster"> Content Style Cluster</label>
+        <label><input type="checkbox" name="selected_services" value="suggestions"> Content Suggestions</label>
+      </div>
+
+      <button class="submit-btn" type="submit">Generate Insights</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-logo">Article Insights AI</div>
+      <div class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="mailto:support@example.com">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+      <div class="footer-note">
+        &copy; {{ year or 2024 }} Article Insights AI. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

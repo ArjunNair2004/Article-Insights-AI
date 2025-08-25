@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Services | Article Insights AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.25);
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .nav-links a {
+      margin-left: 24px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-links a:hover {
+      color: #4fa2ff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    .container h1 {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 800;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 30px 25px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+    }
+    .service-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(20,20,48,0.18);
+    }
+    .service-card h2 {
+      font-size: 20px;
+      color: #4fa2ff;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .service-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 0;
+      color: rgba(255,255,255,0.92);
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #4fa2ff;
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #3a8ee0;
+    }
+    .form-button {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .form-button .btn {
+      font-size: 18px;
+      padding: 14px 28px;
+    }
+    /* Footer styles */
+    footer {
+      width: 100%;
+      margin-top: 40px;
+      background: rgba(30,60,114,0.35);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(230,240,255,0.09);
+      color: #c5d0ea;
+      font-size: 1.07rem;
+      padding: 30px 0 18px 0;
+      text-align: center;
+    }
+    .footer-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .footer-nav {
+      margin-bottom: 8px;
+    }
+    .footer-nav a {
+      margin: 0 12px;
+      color: #c5d0ea;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    .footer-nav a:hover {
+      color: #76adff;
+    }
+    .footer-note {
+      font-size: 0.97rem;
+      color: #aebcce;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+    @media(max-width:760px){
+      nav { flex-direction: column; gap: 10px; padding: 13px 4vw; }
+      .container { padding: 0 6px; }
+      .services-grid { gap: 16px; }
+      .footer-wrap { max-width:98vw; }
+    }
+  </style>
+</head>
+<body>
+  <header>Choose a powerful tool to enhance your article strategy</header>
+  <nav>
+    <div class="logo">Article Insights AI</div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Our AI-Powered Services</h1>
+    <div class="services-grid">
+      <div class="service-card">
+        <h2>Share Count Predictor</h2>
+        <p>Predict how many times your article might be shared based on its content, structure, and metadata.</p>
+      </div>
+      <div class="service-card">
+        <h2>Virality Predictor</h2>
+        <p>Estimate your content’s potential to go viral with our machine learning-based virality model.</p>
+      </div>
+      <div class="service-card">
+        <h2>Content Score & Suggestions</h2>
+        <p>Evaluate your content quality and receive suggestions for improvements in structure and clarity.</p>
+      </div>
+      <div class="service-card">
+        <h2>Heatmap & Graphs</h2>
+        <p>Visualize your article’s strengths and weaknesses through AI-generated heatmaps and keyword graphs.</p>
+      </div>
+      <div class="service-card">
+        <h2>Cluster Style Analysis</h2>
+        <p>Identify what style cluster your article belongs to and tailor content accordingly for better reach.</p>
+      </div>
+    </div>
+    <div class="form-button">
+      <a href="/form" class="btn">Get Insights</a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-logo">Article Insights AI</div>
+      <div class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="mailto:support@example.com">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+      <div class="footer-note">
+        &copy; {{ year or 2024 }} Article Insights AI. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

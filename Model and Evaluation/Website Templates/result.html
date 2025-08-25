@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result | Article Insights AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: #191e23;
+    }
+    header {
+      background: rgba(0,0,0,0.3);
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #fff;
+      user-select:none;
+      letter-spacing: 1px;
+    }
+    .nav-links a {
+      margin-left: 28px;
+      color: #fafdff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover {
+      color: #4fa2ff;
+      border-bottom: 2px solid #4fa2ff;
+    }
+    .result-container {
+      max-width: 900px;
+      margin: 48px auto 36px auto;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+    }
+    .output-card {
+      background: rgba(255,255,255,0.19);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(30,60,114,0.13), 0 1.5px 8px rgba(33,60,136,0.05);
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      max-width: 570px;
+      margin: 0 auto;
+      border: 1.5px solid rgba(175,195,232,0.12);
+    }
+    .output-title {
+      color: #4fa2ff !important;
+      text-shadow: 0 2px 12px rgba(30,60,114,0.15);
+      font-size: 1.31rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0.01em;
+    }
+    .output-value,
+    .viral-label,
+    .output-desc,
+    .output-score,
+    .output-list,
+    .suggestion-list li {
+      color: #fff !important;
+      text-shadow: 0 2px 12px rgba(30,60,114, 0.21);
+    }
+    .output-value {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+    .viral-label {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 6px 0 14px 0;
+      letter-spacing: 0.03em;
+    }
+    .viral-label.not-viral {
+      color: #fa7d7a !important;
+    }
+    .output-desc {
+      font-size: 1.1rem;
+      margin-bottom: 2px;
+    }
+    .output-list {
+      margin-left: 1.5em;
+      padding-left: 0.5em;
+    }
+    .output-score {
+      font-weight: 700;
+      font-size: 1.44rem;
+      margin-top: 2px;
+    }
+    .suggestion-list li {
+      margin-bottom: 4px;
+    }
+    .data-figure {
+      margin: 16px 0;
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow:0 1.5px 8px #bdd4ea32;
+    }
+    .try-again-btn {
+      display: block;
+      width: 180px;
+      margin: 36px auto 0 auto;
+      padding: 12px 0;
+      background-color: #4066a5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s;
+      box-shadow: 0 3px 10px rgba(40, 80, 160, 0.08);
+    }
+    .try-again-btn:hover {
+      background-color: #4fa2ff;
+      color: #1e2a45;
+    }
+    footer {
+      width: 100%;
+      margin-top: 40px;
+      background: rgba(30,60,114,0.35);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(230,240,255,0.09);
+      color: #c5d0ea;
+      font-size: 1.07rem;
+      padding: 30px 0 18px 0;
+      text-align: center;
+    }
+    .footer-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .footer-nav {
+      margin-bottom: 8px;
+    }
+    .footer-nav a {
+      margin: 0 12px;
+      color: #c5d0ea;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    .footer-nav a:hover {
+      color: #76adff;
+    }
+    .footer-note {
+      font-size: 0.97rem;
+      color: #aebcce;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+    @media (max-width: 700px) {
+      .result-container {
+        padding: 6px 2vw;
+        gap: 19px;
+      }
+      nav { padding: 13px 5vw;}
+      .output-card {padding:18px 7px; border-radius: 13px;}
+      .output-title { font-size: 1.09rem;}
+      .output-value, .viral-label {font-size: 1.16rem;}
+      .output-desc { font-size: 0.96rem;}
+      .footer-wrap { max-width:98vw; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Boost your article's impact with smart AI-powered insights
+  </header>
+  <nav>
+    <div class="logo">Article Insights AI</div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/services">Services</a>
+    </div>
+  </nav>
+  <div class="result-container">
+
+    {% if show_share_count %}
+    <div class="output-card">
+      <div class="output-title">Predicted Share Count</div>
+      <div class="output-value">{{ shares_pred }}</div>
+      <div class="output-desc">Estimated number of shares your article may get.</div>
+    </div>
+    {% endif %}
+
+    {% if show_virality %}
+    <div class="output-card">
+      <div class="output-title">Virality Prediction</div>
+      <div class="viral-label{% if viral_label == 'Not Viral ❌' %} not-viral{% endif %}">
+        {{ viral_label }}
+      </div>
+      <div class="output-desc">
+        {{ "This article is likely to go viral." if viral_label.startswith("Viral") else "This article is not likely to go viral." }}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if show_cluster %}
+    <div class="output-card">
+      <div class="output-title">Content Style: {{ cluster_style_name }}</div>
+      <div class="output-desc">{{ cluster_description }}</div>
+    </div>
+    {% endif %}
+
+    {% if show_suggestions %}
+    <div class="output-card">
+      <div class="output-title">Content Quality Score</div>
+      <div class="output-score">{{ content_quality_score }} / 100</div>
+      {% if suggestions %}
+      <div class="output-title" style="font-weight:600; margin-top:10px;">Suggestions for Improvement:</div>
+      <ul class="suggestion-list output-list">
+        {% for tip in suggestions %}
+          <li>{{ tip }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if show_heatmap %}
+    <div class="output-card">
+      <div class="output-title">Timing & Media Insights</div>
+      <div class="output-desc">{{ pub_time_caption }}</div>
+      <img class="data-figure" src="{{ pub_time_plot }}" alt="Best Publish Time Heatmap" />
+      <div class="output-desc">{{ channel_caption }}</div>
+      <img class="data-figure" src="{{ channel_plot }}" alt="Channel Effectiveness" />
+      <div class="output-desc">{{ media_caption }}</div>
+      <img class="data-figure" src="{{ media_plot }}" alt="Media Impact" />
+    </div>
+    {% endif %}
+
+  </div>
+  <a href="/form" class="try-again-btn">Try Again</a>
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-logo">Article Insights AI</div>
+      <div class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="mailto:support@example.com">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+      <div class="footer-note">
+        &copy; {{ year or 2024 }} Article Insights AI. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
